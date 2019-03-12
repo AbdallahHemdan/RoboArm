@@ -1,2 +1,2 @@
 # RoboArm
-🤖 Analysis tool for RRR 2D robotic arm
+🤖 Analysis tool for 3D robotic arm
