@@ -1,0 +1,86 @@
+function InverseKinematics(Link1,Link2,Link3,A,B,Theta)
+
+    % cosd(X) returns the cosine of X,Such that X in degrees.
+    A = A - Link3* cosd(Theta);
+    B = B - Link3* sind(Theta);
+    
+    R = sqrt(A^2+B^2);
+    Alpha = (Link1^2 + R^2 - Link2^2)/(2/Link2*R);
+    
+    Q1 = 0 ; 
+    Q2 = 0 ; 
+    Q3 = 0 ; 
+    Q11 = 0 ;
+    Q22 = 0 ;
+    Q33 = 0 ;
+    
+  if Alpha >= -1  && Alpha <=1
+    % acos(X) return the inverse of the function in degree (e.g 60 Deg = pi/3) 
+    Alpha =- acos(Alpha) 
+      
+    if(Alpha==-0)
+        Alpha = 0
+    end
+
+    if(A ~= 0)
+        Q1=atan(B/A)-Alpha;
+    else
+        Q1=pi/2;
+    end
+
+    Q2 = atan( (R*sin(Alpha) ) / (R * cos(Alpha) - Link1) );
+    Q3 = Theta * pi/180 - Q1 - Q2;
+    
+    Q1 = (Q1*180) / pi;
+    Q2 = (Q2*180) / pi;
+    Q3 = (Q3*180)/pi;
+    
+    Alpha=-Alpha;
+
+    if(A~=0)
+        Q11=atan(B/A)-Alpha;
+    else
+        Q11=pi/2-Alpha;
+    end
+
+    Q22=atan((R*sin(Alpha))/(R*cos(Alpha)-Link1));
+    Q33=Theta-Q11-Q22;
+    Q11 = (Q11*180) / pi;
+    Q22 = (Q22*180) / pi;
+    Q33 = (Q33*180) /pi;
+
+    if(Q1<0)
+        Q1=Q1+360;
+    end
+
+    while(Q2<0)
+        Q2 = Q2+360;
+    end
+
+    while(Q3<0)
+        Q3 = Q3+360;
+    end
+
+    while(Q11<0)
+        Q11 = Q11+360;
+    end
+
+    while(Q22<0)
+        Q22 = Q22+360;
+    end
+
+    while(Q33<0)
+        Q33 = Q33+360;
+    end
+
+    else
+        disp('Sorry, Cannot reach \n');
+        return;
+    end
+
+    if(Q1~=Q11 && Q2 ~= Q22 && Q3 ~= Q33)
+        disp([q1 q2 q3 q11 q22 q33]);
+    else
+        disp([q1 q2 q3]);
+    end
+end

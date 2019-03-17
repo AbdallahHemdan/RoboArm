@@ -1,0 +1,32 @@
+format compact 
+
+% Widly Used Format 
+FormatSpec = '%f';
+endl = '\n' ;
+
+FileId = fopen("Input.txt",'r');
+
+Input = fscanf(FileId,FormatSpec);
+
+disp(endl);
+disp("------------ Welcome To Out Robo Arm ------------");
+disp(endl);
+disp(endl);
+
+disp(" - Press Any Key To Calculate the Inverse Kinematics " ) ;
+disp(endl);
+
+% Wait Here For Pressing any Key..
+pause ; 
+
+disp("The Values of Q1, Q2, Q3 As Following :  ");
+InverseKinematics(Input(10), Input(11), Input(12), Input(13), Input(14), Input(15));
+
+disp("- Press Any Key To Calculate The Maximum Torque");
+disp(endl);
+
+% Wait Here For Pressing any Key..
+pause;
+
+disp("The Values of Maximum Torque As Following : ");
+CalcMaxTorque( Input(16),

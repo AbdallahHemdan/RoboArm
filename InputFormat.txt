@@ -1,0 +1,19 @@
+// For plotting
+
+Link1 Link2 Link3
+minQ1 maxQ1
+minQ2 maxQ2
+minQ3 maxQ3
+
+// For inverse kinematics
+
+Link1 Link2 Link3
+A B Theta
+
+// For Max torque 
+
+Link1 Link2 Link3 
+minQ1 maxQ1
+minQ2 maxQ2
+minQ3 maxQ3
+Load
