@@ -1,32 +1,74 @@
-format compact 
+format compact
 
-% Widly Used Format 
+% Widly Used Format
 FormatSpec = '%f';
-endl = '\n' ;
+endl = '\n';
 
-FileId = fopen("Input.txt",'r');
+% Open The Input File ..
+FileId = fopen("Input.txt", 'r');
+Input = fscanf(FileId, FormatSpec);
 
-Input = fscanf(FileId,FormatSpec);
-
-disp(endl);
+disp('\n');
 disp("------------ Welcome To Out Robo Arm ------------");
 disp(endl);
 disp(endl);
 
-disp(" - Press Any Key To Calculate the Inverse Kinematics " ) ;
-disp(endl);
-
-% Wait Here For Pressing any Key..
-pause ; 
-
-disp("The Values of Q1, Q2, Q3 As Following :  ");
-InverseKinematics(Input(10), Input(11), Input(12), Input(13), Input(14), Input(15));
-
-disp("- Press Any Key To Calculate The Maximum Torque");
+disp(" - Press Any Key To Plot The Working Space");
 disp(endl);
 
 % Wait Here For Pressing any Key..
 pause;
 
-disp("The Values of Maximum Torque As Following : ");
-CalcMaxTorque( Input(16),
+
+PlotWorkingSpace(Input(1), Input(2), Input(3), Input(4), Input(5), Input(6), Input(7), Input(8), Input(9));
+
+
+function PlotWorkingSpace (Link1, Link2,Link3,MinQ1,maxQ1,MinQ2,maxQ2,MinQ3,maxQ3)
+  while(MinQ1<0)
+      MinQ1 =+ 360;
+  end
+  
+  while(MinQ2<0)
+      MinQ2 =+ 360;
+  end
+  
+  while(MinQ3<0)
+      MinQ3 =+ 360;
+  end
+  
+  while(maxQ1<0)
+      maxQ1 =+ 360;
+  end
+  
+  while(maxQ2<0)
+      maxQ2 =+ 360;
+  end
+  
+  while(maxQ3<0)
+      maxQ3 =+ 360;
+  end
+  
+    if(MinQ1>maxQ1)
+      maxQ1 =+ 360;
+    end
+    
+    if(MinQ2>maxQ2)
+        maxQ2 =+ 360;
+    end
+    
+    if(MinQ3>maxQ3)
+        maxQ3 =+ 360;
+    end
+    
+    k=MinQ3:maxQ3;
+    
+   
+    for i=MinQ1:maxQ1
+        for j=MinQ2:maxQ2
+                plot(Link1*cosd(i)+Link2*cosd(i+j)+Link3*cosd(i+j+k),Link1*sind(i)+Link2*sind(i+j)+Link3*sind(i+j+k),'y.','markersize',10);
+         
+                % Keep Plotting in the same figure
+                hold on;
+        end
+    end
+end
