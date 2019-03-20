@@ -47,3 +47,4 @@ function PlotWorkingSpace (Link1, Link2,Link3,MinQ1,maxQ1,MinQ2,maxQ2,MinQ3,maxQ
         end
     end
 end
+
