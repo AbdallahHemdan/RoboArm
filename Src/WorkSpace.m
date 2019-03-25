@@ -285,6 +285,9 @@ function pltBtn_Callback(hObject, eventdata, handles)
 % hObject    handle to pltBtn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+cla reset;
+
 Link1 = str2double(get(handles.lnk1, 'String'));
 Link2 = str2double(get(handles.lnk2, 'String'));
 Link3 = str2double(get(handles.lnk3, 'String'));
